@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @ToString
@@ -25,7 +27,9 @@ public class Route {
     @Column(name = "NUMBER")
     private int number;
 
-    @ManyToOne
-    @JoinColumn(name = "USER_CHAT_ID")
-    private UserData userData;
+    @Column(name = "CREATE_REQUEST")
+    private Date create_request;
+
+    public Route() {
+    }
 }

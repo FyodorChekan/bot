@@ -10,10 +10,11 @@ public enum MessageConst {
             """),
     HELP_MESSAGE("""
             Доступные команды:
-            /find_route - поиск поездов по маршруту
-            /find_number - поиск маршрута поезда по номеру
-            /by_departure - поиск поездов по городу отправления
-            /by_arrival - поиск поездов по городу прибытия
+            /find_by_departure_arrival - Начать поиск поездов по маршруту.
+            /find_by_number - Начать поиск маршрута по номеру поезда.
+            /find_by_departure_date - Начать поиск маршрута по городу отправления и дате отправления.
+            /find_by_arrival_date - Начать поиск маршрута по городу прибытия и дате прибытия.
+            /find_information_by_number - Получить детальную информацию по поезду.
             """);
 
     private final String message;

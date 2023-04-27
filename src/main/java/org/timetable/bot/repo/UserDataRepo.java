@@ -11,5 +11,5 @@ public interface UserDataRepo extends JpaRepository<UserData, Integer> {
 
     UserData findByLogin(String login);
 
-    List<UserData> findAllIsAdmin(boolean isAdmin);
+    List<UserData> findAllByIsAdmin(boolean isAdmin);
 }

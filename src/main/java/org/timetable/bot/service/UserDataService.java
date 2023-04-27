@@ -18,7 +18,7 @@ public class UserDataService {
     }
 
     public List<UserData> getAdmins() {
-        return userDataRepo.findAllIsAdmin(true);
+        return userDataRepo.findAllByIsAdmin(true);
     }
 
     public UserData getUserByLogin(String login) {

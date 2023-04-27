@@ -24,14 +24,11 @@ public class UserData {
     @Column(name = "CHAT_ID")
     private String chatId;
 
-    @Column(name = "NUMBER_ROUTE")
-    private int numberRoute;
-
     @Column(name = "IS_ADMIN")
     private boolean isAdmin;
 
-    @OneToMany(mappedBy = "userdata")
-    private List<Route> routeList;
+    @OneToMany(mappedBy = "user")
+    private List<UserRequest> requests;
 
     public UserData() {
     }

@@ -53,13 +53,13 @@ public class StartCommand implements BotCommand{
 
     private void buildResponseForNewUser(SendMessage response) {
 
-        InlineKeyboardButton requestWork = InlineKeyboardButton.builder()
-                .text("Начать поиск маршрута.")
-                .callbackData("/request_work")
+        InlineKeyboardButton startWork = InlineKeyboardButton.builder()
+                .text("Здравствуйте. Для начала работы нажмите здесь.")
+                .callbackData("/start")
                 .build();
 
         InlineKeyboardMarkup keyboardMarkup = InlineKeyboardMarkup.builder()
-                .keyboardRow(List.of(requestWork))
+                .keyboardRow(List.of(startWork))
                 .build();
 
         response.setText(START_MESSAGE.getMessage());
