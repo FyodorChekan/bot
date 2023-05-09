@@ -9,7 +9,6 @@ import java.util.Date;
 
 @Getter
 @Setter
-@ToString
 @Entity
 @Table(name = "ROUTE")
 public class Route {
@@ -31,5 +30,14 @@ public class Route {
     private Date create_request;
 
     public Route() {
+    }
+
+    @Override
+    public String toString() {
+        return "Route{" +
+                "departure='" + departure + '\'' +
+                ", arrival='" + arrival + '\'' +
+                ", number=" + number +
+                '}';
     }
 }

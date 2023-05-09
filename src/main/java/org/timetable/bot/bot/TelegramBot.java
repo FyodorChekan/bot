@@ -12,7 +12,16 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMa
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.timetable.bot.bot.command.CommandRegistry;
+import org.timetable.bot.context.UserContext;
+import org.timetable.bot.repo.RouteRepo;
+import org.timetable.bot.repo.UserDataRepo;
+import org.timetable.bot.repo.UserRequestRepo;
+import org.timetable.bot.service.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -20,6 +29,7 @@ import java.util.List;
 public class TelegramBot extends TelegramLongPollingBot {
 
     private final CommandRegistry commandRegistry;
+
 
     @Autowired
     public TelegramBot(TelegramBotsApi telegramBotsApi, CommandRegistry commandRegistry) throws TelegramApiException {
@@ -59,10 +69,50 @@ public class TelegramBot extends TelegramLongPollingBot {
             }
 
             if (!command.startsWith("/")) {
-                SendMessage incorrectCommandMessage = new SendMessage();
-                incorrectCommandMessage.setChatId(message.getChat().getId().toString());
-                incorrectCommandMessage.setText("Пожалуйста, введите команду. Узнать список доступных команд - /help");
-                execute(incorrectCommandMessage);
+
+                String lastUserCommand = UserContext.getUserState(message.getChat().getUserName());
+                if (lastUserCommand.equals("/find_by_departure_arrival")) {
+
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+                    SendMessage incorrectCommandMessage = new SendMessage();
+                    incorrectCommandMessage.setChatId(message.getChat().getId().toString());
+
+                    try {
+
+                        Date date = dateFormat.parse(command.split(" ")[2]);
+
+                        Calendar tomorrowCalendar = Calendar.getInstance();
+                        tomorrowCalendar.setTime(date);
+                        tomorrowCalendar.add(Calendar.DAY_OF_WEEK, 1);
+                        Date tomorrow = tomorrowCalendar.getTime();
+
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.setTime(date);
+                        calendar.add(Calendar.HOUR, 5);
+                        Date routeDate = calendar.getTime();
+
+                        if (routeDate.after(date) && routeDate.before(tomorrow)) {
+                            incorrectCommandMessage.setText(FindByDepartureArrivalService.find(command.split(" ")[0], command.split(" ")[1], routeDate));
+                            execute(incorrectCommandMessage);
+                        }
+
+                    } catch(ParseException e) {
+                        incorrectCommandMessage.setChatId(message.getChat().getId().toString());
+                        incorrectCommandMessage.setText("Ошибка в формате даты. Формат: \"dd.MM.yyyy\"");
+                        execute(incorrectCommandMessage);
+                    }
+                    return;
+                } else if (lastUserCommand.equals("/find_by_number")) {
+                    String login = message.getChat().getUserName();
+                    SendMessage incorrectCommandMessage = new SendMessage();
+                    incorrectCommandMessage.setChatId(message.getChat().getId().toString());
+                    DevDBServiceImpl dbService = null;
+                    incorrectCommandMessage.setText(dbService.findRoute(message.getText()).toString());
+                    execute(incorrectCommandMessage);
+                    return;
+                }
+
+
                 return;
             }
 
@@ -70,10 +120,14 @@ public class TelegramBot extends TelegramLongPollingBot {
                 try {
                     setDefaultKeyboard(result);
                     execute(result);
+
+                    UserContext.saveUserState(command, message.getChat().getUserName());
+
                 } catch (TelegramApiException e) {
                     log.error("Ошибка отправки ответа", e);
                 }
             });
+
         } catch (TelegramApiException e) {
             log.error("Ошибка отправки ответа", e);
         }
