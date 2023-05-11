@@ -11,18 +11,16 @@ public class RouteService {
 
     private final RouteRepo routeRepo;
 
-    public void create(Route route){
+    public void create(Route route) {
         routeRepo.save(route);
     }
 
-    public Route getRouteByNumber(Integer number){
+    public Route getRouteByNumber(Integer number) {
         return routeRepo.findByNumber(number);
     }
 
-    public boolean checkExistsRoute(Integer number){
+    public boolean checkExistsRoute(Integer number) {
         Route route = routeRepo.findByNumber(number);
         return route != null;
     }
-
-
 }
