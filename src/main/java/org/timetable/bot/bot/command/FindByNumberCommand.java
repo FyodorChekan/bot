@@ -4,9 +4,7 @@ import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
-import org.timetable.bot.model.Route;
-import org.timetable.bot.service.DevDBServiceImpl;
-import org.timetable.bot.service.YandexService;
+import org.timetable.bot.service.yandex.YandexService;
 
 import java.util.Collections;
 import java.util.List;
@@ -35,6 +33,6 @@ public class FindByNumberCommand implements BotCommand {
 
     @Override
     public String supportedCommand() {
-        return "/find_by_number";
+        return CommandConst.FIND_BY_NUMBER;
     }
 }

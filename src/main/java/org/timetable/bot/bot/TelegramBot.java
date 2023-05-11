@@ -11,16 +11,15 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.timetable.bot.bot.command.CommandConst;
 import org.timetable.bot.bot.command.CommandRegistry;
 import org.timetable.bot.context.UserContext;
-import org.timetable.bot.repo.RouteRepo;
-import org.timetable.bot.repo.UserDataRepo;
-import org.timetable.bot.repo.UserRequestRepo;
-import org.timetable.bot.service.*;
+import org.timetable.bot.service.FindByDepartureArrivalService;
+import org.timetable.bot.service.RouteService;
+import org.timetable.bot.utils.DateUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -29,14 +28,14 @@ import java.util.List;
 public class TelegramBot extends TelegramLongPollingBot {
 
     private final CommandRegistry commandRegistry;
-
+    private final RouteService routeService;
 
     @Autowired
-    public TelegramBot(TelegramBotsApi telegramBotsApi, CommandRegistry commandRegistry) throws TelegramApiException {
+    public TelegramBot(TelegramBotsApi telegramBotsApi, CommandRegistry commandRegistry, RouteService routeService) throws TelegramApiException {
         this.commandRegistry = commandRegistry;
+        this.routeService = routeService;
 
         telegramBotsApi.registerBot(this);
-
     }
 
     @Override
@@ -53,84 +52,72 @@ public class TelegramBot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         try {
 
-            Message message;
-            if (update.getMessage() != null) {
-                message = update.getMessage();
-            } else {
-                message = update.getCallbackQuery().getMessage();
-            }
+            Message message = getMessage(update);
+            String command = getCommand(update);
 
-            String command;
-
-            if (update.getMessage() == null) {
-                command = update.getCallbackQuery().getData();
-            } else {
-                command = update.getMessage().getText();
-            }
-
-            if (!command.startsWith("/")) {
-
-                String lastUserCommand = UserContext.getUserState(message.getChat().getUserName());
-                if (lastUserCommand.equals("/find_by_departure_arrival")) {
-
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-                    SendMessage incorrectCommandMessage = new SendMessage();
-                    incorrectCommandMessage.setChatId(message.getChat().getId().toString());
-
+            if (command.startsWith("/")) {
+                commandRegistry.getCommand(command).runCommand(message).forEach(result -> {
                     try {
+                        setDefaultKeyboard(result);
+                        execute(result);
 
-                        Date date = dateFormat.parse(command.split(" ")[2]);
+                        UserContext.saveUserState(command, message.getChat().getUserName());
 
-                        Calendar tomorrowCalendar = Calendar.getInstance();
-                        tomorrowCalendar.setTime(date);
-                        tomorrowCalendar.add(Calendar.DAY_OF_WEEK, 1);
-                        Date tomorrow = tomorrowCalendar.getTime();
-
-                        Calendar calendar = Calendar.getInstance();
-                        calendar.setTime(date);
-                        calendar.add(Calendar.HOUR, 5);
-                        Date routeDate = calendar.getTime();
-
-                        if (routeDate.after(date) && routeDate.before(tomorrow)) {
-                            incorrectCommandMessage.setText(FindByDepartureArrivalService.find(command.split(" ")[0], command.split(" ")[1], routeDate));
-                            execute(incorrectCommandMessage);
-                        }
-
-                    } catch(ParseException e) {
-                        incorrectCommandMessage.setChatId(message.getChat().getId().toString());
-                        incorrectCommandMessage.setText("Ошибка в формате даты. Формат: \"dd.MM.yyyy\"");
-                        execute(incorrectCommandMessage);
+                    } catch (TelegramApiException e) {
+                        log.error("Ошибка отправки ответа", e);
                     }
-                    return;
-                } else if (lastUserCommand.equals("/find_by_number")) {
-                    String login = message.getChat().getUserName();
-                    SendMessage incorrectCommandMessage = new SendMessage();
-                    incorrectCommandMessage.setChatId(message.getChat().getId().toString());
-                    DevDBServiceImpl dbService = null;
-                    incorrectCommandMessage.setText(dbService.findRoute(message.getText()).toString());
-                    execute(incorrectCommandMessage);
-                    return;
-                }
-
-
+                });
                 return;
             }
 
-            commandRegistry.getCommand(command).runCommand(message).forEach(result -> {
-                try {
-                    setDefaultKeyboard(result);
-                    execute(result);
-
-                    UserContext.saveUserState(command, message.getChat().getUserName());
-
-                } catch (TelegramApiException e) {
-                    log.error("Ошибка отправки ответа", e);
-                }
-            });
+            processPlainText(message, command);
 
         } catch (TelegramApiException e) {
             log.error("Ошибка отправки ответа", e);
         }
+    }
+
+    private void processPlainText(Message message, String command) throws TelegramApiException {
+        String lastUserCommand = UserContext.getUserState(message.getChat().getUserName());
+        if (lastUserCommand.equals(CommandConst.FIND_BY_DEPARTURE_ARRIVAL)) {
+
+            try {
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+                Date date = dateFormat.parse(command.split(" ")[2]);
+                Date tomorrow = DateUtils.getNextDay(date);
+                Date routeDate = DateUtils.addHours(date, 5);
+
+                if (routeDate.after(date) && routeDate.before(tomorrow)) {
+                    sendIncorrectMessage(message, FindByDepartureArrivalService.find(command.split(" ")[0], command.split(" ")[1], routeDate));
+                }
+
+            } catch (ParseException e) {
+                sendIncorrectMessage(message, "Ошибка в формате даты. Формат: \"dd.MM.yyyy\"");
+            }
+        } else if (lastUserCommand.equals(CommandConst.FIND_BY_NUMBER)) {
+            sendIncorrectMessage(message, routeService.getRouteByNumber(Integer.parseInt(message.getText())).toString());
+        }
+    }
+
+    private static String getCommand(Update update) {
+        String command;
+        if (update.getMessage() == null) {
+            command = update.getCallbackQuery().getData();
+        } else {
+            command = update.getMessage().getText();
+        }
+        return command;
+    }
+
+    private static Message getMessage(Update update) {
+        Message message;
+        if (update.getMessage() != null) {
+            message = update.getMessage();
+        } else {
+            message = update.getCallbackQuery().getMessage();
+        }
+        return message;
     }
 
     private void setDefaultKeyboard(SendMessage response) {
@@ -149,5 +136,12 @@ public class TelegramBot extends TelegramLongPollingBot {
                 .build();
 
         response.setReplyMarkup(keyboardMarkup);
+    }
+
+    private void sendIncorrectMessage(Message message, String text) throws TelegramApiException {
+        SendMessage incorrectCommandMessage = new SendMessage();
+        incorrectCommandMessage.setChatId(message.getChat().getId().toString());
+        incorrectCommandMessage.setText(text);
+        execute(incorrectCommandMessage);
     }
 }

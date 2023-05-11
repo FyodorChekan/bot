@@ -31,12 +31,12 @@ public class HelpCommand implements BotCommand{
 
         InlineKeyboardButton findByDepartureArrival = InlineKeyboardButton.builder()
                 .text("Найди по маршруту.")
-                .callbackData("/find_by_departure_arrival")
+                .callbackData(CommandConst.FIND_BY_DEPARTURE_ARRIVAL)
                 .build();
 
         InlineKeyboardButton findByNumber = InlineKeyboardButton.builder()
                 .text("Найди по номеру поезда.")
-                .callbackData("/find_by_number")
+                .callbackData(CommandConst.FIND_BY_NUMBER)
                 .build();
 
         InlineKeyboardButton findByDepartureDate = InlineKeyboardButton.builder()

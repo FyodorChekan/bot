@@ -1,10 +1,9 @@
-package org.timetable.bot.service;
+package org.timetable.bot.service.yandex;
 
 import org.timetable.bot.model.Route;
 import org.timetable.bot.repo.RouteRepo;
-import org.timetable.bot.repo.UserDataRepo;
 
-public abstract class BaseYandexServiceImpl implements YandexService{
+public abstract class BaseYandexServiceImpl implements YandexService {
 
     private final RouteRepo repo;
 
