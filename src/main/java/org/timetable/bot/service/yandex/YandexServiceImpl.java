@@ -1,11 +1,9 @@
-package org.timetable.bot.service;
+package org.timetable.bot.service.yandex;
 
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.timetable.bot.model.Route;
-import org.timetable.bot.model.UserData;
 import org.timetable.bot.repo.RouteRepo;
-import org.timetable.bot.repo.UserDataRepo;
 
 @Service
 @Profile("PROM")

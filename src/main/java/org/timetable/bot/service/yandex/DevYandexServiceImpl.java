@@ -1,19 +1,17 @@
-package org.timetable.bot.service;
+package org.timetable.bot.service.yandex;
 
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.timetable.bot.model.Route;
-import org.timetable.bot.model.UserData;
 import org.timetable.bot.repo.RouteRepo;
-import org.timetable.bot.repo.UserDataRepo;
 
 import java.util.Date;
 
 @Service
 @Profile("DEV")
-public class DevYandexServiceImpl extends BaseYandexServiceImpl{
+public class DevYandexServiceImpl extends BaseYandexServiceImpl {
 
-    protected DevYandexServiceImpl(RouteRepo repo) {
+    public DevYandexServiceImpl(RouteRepo repo) {
         super(repo);
     }
 
