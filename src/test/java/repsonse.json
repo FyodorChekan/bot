@@ -1,0 +1,943 @@
+{
+  "search": {
+    "from": {
+      "type": "settlement",
+      "title": "Москва",
+      "short_title": "Москва",
+      "popular_title": "Москва",
+      "code": "c213"
+    },
+    "to": {
+      "type": "settlement",
+      "title": "Белгород",
+      "short_title": "Белгород",
+      "popular_title": "Белгород",
+      "code": "c4"
+    },
+    "date": "2023-06-12"
+  },
+  "segments": [
+    {
+      "thread": {
+        "number": "029У",
+        "title": "Санкт-Петербург — Белгород",
+        "short_title": "Санкт-Петербург — Белгород",
+        "express_type": null,
+        "transport_type": "train",
+        "carrier": {
+          "code": 112,
+          "title": "РЖД/ФПК",
+          "codes": {
+            "sirena": null,
+            "iata": null,
+            "icao": null
+          },
+          "address": "Москва, ул. Новая Басманная , д. 2",
+          "url": "http://www.rzd.ru/",
+          "email": "info@rzd.ru",
+          "contacts": "Единая телефонная линия: +7 (800) 775-00-00 (звонок бесплатный из всех регионов РФ).",
+          "phone": "+7 (800) 775-00-00",
+          "logo": "https://yastat.net/s3/rasp/media/data/company/logo/logo.gif",
+          "logo_svg": null
+        },
+        "uid": "029U_3_2",
+        "vehicle": null,
+        "transport_subtype": {
+          "title": null,
+          "code": null,
+          "color": null
+        },
+        "thread_method_link": "api.rasp.yandex.net/v3/thread/?date=2023-06-11&uid=029U_3_2"
+      },
+      "stops": "",
+      "from": {
+        "type": "station",
+        "title": "Москва (Восточный вокзал)",
+        "short_title": null,
+        "popular_title": "Восточный вокзал",
+        "code": "s9879173",
+        "station_type": "train_station",
+        "station_type_name": "вокзал",
+        "transport_type": "train"
+      },
+      "to": {
+        "type": "station",
+        "title": "Белгород",
+        "short_title": "",
+        "popular_title": "",
+        "code": "s9605027",
+        "station_type": "station",
+        "station_type_name": "станция",
+        "transport_type": "train"
+      },
+      "departure_platform": "",
+      "arrival_platform": "",
+      "departure_terminal": null,
+      "arrival_terminal": null,
+      "duration": 26400.0,
+      "has_transfers": false,
+      "tickets_info": {
+        "et_marker": false,
+        "places": []
+      },
+      "departure": "2023-06-12T06:40:00+03:00",
+      "arrival": "2023-06-12T14:00:00+03:00",
+      "start_date": "2023-06-11"
+    },
+    {
+      "thread": {
+        "number": "119А",
+        "title": "Санкт-Петербург — Белгород",
+        "short_title": "Санкт-Петербург — Белгород",
+        "express_type": null,
+        "transport_type": "train",
+        "carrier": {
+          "code": 112,
+          "title": "РЖД/ФПК",
+          "codes": {
+            "sirena": null,
+            "iata": null,
+            "icao": null
+          },
+          "address": "Москва, ул. Новая Басманная , д. 2",
+          "url": "http://www.rzd.ru/",
+          "email": "info@rzd.ru",
+          "contacts": "Единая телефонная линия: +7 (800) 775-00-00 (звонок бесплатный из всех регионов РФ).",
+          "phone": "+7 (800) 775-00-00",
+          "logo": "https://yastat.net/s3/rasp/media/data/company/logo/logo.gif",
+          "logo_svg": null
+        },
+        "uid": "119A_5_2",
+        "vehicle": null,
+        "transport_subtype": {
+          "title": null,
+          "code": null,
+          "color": null
+        },
+        "thread_method_link": "api.rasp.yandex.net/v3/thread/?date=2023-06-12&uid=119A_5_2"
+      },
+      "stops": "",
+      "from": {
+        "type": "station",
+        "title": "Москва (Восточный вокзал)",
+        "short_title": null,
+        "popular_title": "Восточный вокзал",
+        "code": "s9879173",
+        "station_type": "train_station",
+        "station_type_name": "вокзал",
+        "transport_type": "train"
+      },
+      "to": {
+        "type": "station",
+        "title": "Белгород",
+        "short_title": "",
+        "popular_title": "",
+        "code": "s9605027",
+        "station_type": "station",
+        "station_type_name": "станция",
+        "transport_type": "train"
+      },
+      "departure_platform": "",
+      "arrival_platform": "",
+      "departure_terminal": null,
+      "arrival_terminal": null,
+      "duration": 44880.0,
+      "has_transfers": false,
+      "tickets_info": {
+        "et_marker": false,
+        "places": []
+      },
+      "departure": "2023-06-12T10:07:00+03:00",
+      "arrival": "2023-06-12T22:35:00+03:00",
+      "start_date": "2023-06-12"
+    },
+    {
+      "thread": {
+        "number": "741А",
+        "title": "Москва — Белгород",
+        "short_title": "Москва — Белгород",
+        "express_type": null,
+        "transport_type": "train",
+        "carrier": {
+          "code": 112,
+          "title": "РЖД/ФПК",
+          "codes": {
+            "sirena": null,
+            "iata": null,
+            "icao": null
+          },
+          "address": "Москва, ул. Новая Басманная , д. 2",
+          "url": "http://www.rzd.ru/",
+          "email": "info@rzd.ru",
+          "contacts": "Единая телефонная линия: +7 (800) 775-00-00 (звонок бесплатный из всех регионов РФ).",
+          "phone": "+7 (800) 775-00-00",
+          "logo": "https://yastat.net/s3/rasp/media/data/company/logo/logo.gif",
+          "logo_svg": null
+        },
+        "uid": "741A_1_2",
+        "vehicle": null,
+        "transport_subtype": {
+          "title": "«Ласточка»",
+          "code": "lastdal",
+          "color": "#CC6600"
+        },
+        "thread_method_link": "api.rasp.yandex.net/v3/thread/?date=2023-06-12&uid=741A_1_2"
+      },
+      "stops": "",
+      "from": {
+        "type": "station",
+        "title": "Москва (Курский вокзал)",
+        "short_title": "М-Курская",
+        "popular_title": "Курский вокзал",
+        "code": "s2000001",
+        "station_type": "train_station",
+        "station_type_name": "вокзал",
+        "transport_type": "train"
+      },
+      "to": {
+        "type": "station",
+        "title": "Белгород",
+        "short_title": "",
+        "popular_title": "",
+        "code": "s9605027",
+        "station_type": "station",
+        "station_type_name": "станция",
+        "transport_type": "train"
+      },
+      "departure_platform": "",
+      "arrival_platform": "",
+      "departure_terminal": null,
+      "arrival_terminal": null,
+      "duration": 27180.0,
+      "has_transfers": false,
+      "tickets_info": {
+        "et_marker": false,
+        "places": []
+      },
+      "departure": "2023-06-12T11:47:00+03:00",
+      "arrival": "2023-06-12T19:20:00+03:00",
+      "start_date": "2023-06-12"
+    },
+    {
+      "thread": {
+        "number": "719М",
+        "title": "Москва — Белгород",
+        "short_title": "Москва — Белгород",
+        "express_type": null,
+        "transport_type": "train",
+        "carrier": {
+          "code": 112,
+          "title": "РЖД/ФПК",
+          "codes": {
+            "sirena": null,
+            "iata": null,
+            "icao": null
+          },
+          "address": "Москва, ул. Новая Басманная , д. 2",
+          "url": "http://www.rzd.ru/",
+          "email": "info@rzd.ru",
+          "contacts": "Единая телефонная линия: +7 (800) 775-00-00 (звонок бесплатный из всех регионов РФ).",
+          "phone": "+7 (800) 775-00-00",
+          "logo": "https://yastat.net/s3/rasp/media/data/company/logo/logo.gif",
+          "logo_svg": null
+        },
+        "uid": "719M_0_2",
+        "vehicle": null,
+        "transport_subtype": {
+          "title": "«Ласточка»",
+          "code": "lastdal",
+          "color": "#CC6600"
+        },
+        "thread_method_link": "api.rasp.yandex.net/v3/thread/?date=2023-06-12&uid=719M_0_2"
+      },
+      "stops": "",
+      "from": {
+        "type": "station",
+        "title": "Москва (Курский вокзал)",
+        "short_title": "М-Курская",
+        "popular_title": "Курский вокзал",
+        "code": "s2000001",
+        "station_type": "train_station",
+        "station_type_name": "вокзал",
+        "transport_type": "train"
+      },
+      "to": {
+        "type": "station",
+        "title": "Белгород",
+        "short_title": "",
+        "popular_title": "",
+        "code": "s9605027",
+        "station_type": "station",
+        "station_type_name": "станция",
+        "transport_type": "train"
+      },
+      "departure_platform": "",
+      "arrival_platform": "",
+      "departure_terminal": null,
+      "arrival_terminal": null,
+      "duration": 27360.0,
+      "has_transfers": false,
+      "tickets_info": {
+        "et_marker": false,
+        "places": []
+      },
+      "departure": "2023-06-12T14:12:00+03:00",
+      "arrival": "2023-06-12T21:48:00+03:00",
+      "start_date": "2023-06-12"
+    },
+    {
+      "thread": {
+        "number": "743В",
+        "title": "Москва — Белгород",
+        "short_title": "Москва — Белгород",
+        "express_type": null,
+        "transport_type": "train",
+        "carrier": {
+          "code": 112,
+          "title": "РЖД/ФПК",
+          "codes": {
+            "sirena": null,
+            "iata": null,
+            "icao": null
+          },
+          "address": "Москва, ул. Новая Басманная , д. 2",
+          "url": "http://www.rzd.ru/",
+          "email": "info@rzd.ru",
+          "contacts": "Единая телефонная линия: +7 (800) 775-00-00 (звонок бесплатный из всех регионов РФ).",
+          "phone": "+7 (800) 775-00-00",
+          "logo": "https://yastat.net/s3/rasp/media/data/company/logo/logo.gif",
+          "logo_svg": null
+        },
+        "uid": "743V_1_2",
+        "vehicle": null,
+        "transport_subtype": {
+          "title": "«Ласточка»",
+          "code": "lastdal",
+          "color": "#CC6600"
+        },
+        "thread_method_link": "api.rasp.yandex.net/v3/thread/?date=2023-06-12&uid=743V_1_2"
+      },
+      "stops": "",
+      "from": {
+        "type": "station",
+        "title": "Москва (Курский вокзал)",
+        "short_title": "М-Курская",
+        "popular_title": "Курский вокзал",
+        "code": "s2000001",
+        "station_type": "train_station",
+        "station_type_name": "вокзал",
+        "transport_type": "train"
+      },
+      "to": {
+        "type": "station",
+        "title": "Белгород",
+        "short_title": "",
+        "popular_title": "",
+        "code": "s9605027",
+        "station_type": "station",
+        "station_type_name": "станция",
+        "transport_type": "train"
+      },
+      "departure_platform": "",
+      "arrival_platform": "",
+      "departure_terminal": null,
+      "arrival_terminal": null,
+      "duration": 25980.0,
+      "has_transfers": false,
+      "tickets_info": {
+        "et_marker": false,
+        "places": []
+      },
+      "departure": "2023-06-12T15:48:00+03:00",
+      "arrival": "2023-06-12T23:01:00+03:00",
+      "start_date": "2023-06-12"
+    },
+    {
+      "thread": {
+        "number": "099М",
+        "title": "Москва — Белгород",
+        "short_title": "Москва — Белгород",
+        "express_type": null,
+        "transport_type": "train",
+        "carrier": {
+          "code": 112,
+          "title": "РЖД/ФПК",
+          "codes": {
+            "sirena": null,
+            "iata": null,
+            "icao": null
+          },
+          "address": "Москва, ул. Новая Басманная , д. 2",
+          "url": "http://www.rzd.ru/",
+          "email": "info@rzd.ru",
+          "contacts": "Единая телефонная линия: +7 (800) 775-00-00 (звонок бесплатный из всех регионов РФ).",
+          "phone": "+7 (800) 775-00-00",
+          "logo": "https://yastat.net/s3/rasp/media/data/company/logo/logo.gif",
+          "logo_svg": null
+        },
+        "uid": "099M_4_2",
+        "vehicle": null,
+        "transport_subtype": {
+          "title": null,
+          "code": null,
+          "color": null
+        },
+        "thread_method_link": "api.rasp.yandex.net/v3/thread/?date=2023-06-12&uid=099M_4_2"
+      },
+      "stops": "",
+      "from": {
+        "type": "station",
+        "title": "Москва (Восточный вокзал)",
+        "short_title": null,
+        "popular_title": "Восточный вокзал",
+        "code": "s9879173",
+        "station_type": "train_station",
+        "station_type_name": "вокзал",
+        "transport_type": "train"
+      },
+      "to": {
+        "type": "station",
+        "title": "Белгород",
+        "short_title": "",
+        "popular_title": "",
+        "code": "s9605027",
+        "station_type": "station",
+        "station_type_name": "станция",
+        "transport_type": "train"
+      },
+      "departure_platform": "",
+      "arrival_platform": "",
+      "departure_terminal": null,
+      "arrival_terminal": null,
+      "duration": 39480.0,
+      "has_transfers": false,
+      "tickets_info": {
+        "et_marker": false,
+        "places": []
+      },
+      "departure": "2023-06-12T19:42:00+03:00",
+      "arrival": "2023-06-13T06:40:00+03:00",
+      "start_date": "2023-06-12"
+    },
+    {
+      "thread": {
+        "number": "071В",
+        "title": "Москва — Белгород",
+        "short_title": "Москва — Белгород",
+        "express_type": null,
+        "transport_type": "train",
+        "carrier": {
+          "code": 112,
+          "title": "РЖД/ФПК",
+          "codes": {
+            "sirena": null,
+            "iata": null,
+            "icao": null
+          },
+          "address": "Москва, ул. Новая Басманная , д. 2",
+          "url": "http://www.rzd.ru/",
+          "email": "info@rzd.ru",
+          "contacts": "Единая телефонная линия: +7 (800) 775-00-00 (звонок бесплатный из всех регионов РФ).",
+          "phone": "+7 (800) 775-00-00",
+          "logo": "https://yastat.net/s3/rasp/media/data/company/logo/logo.gif",
+          "logo_svg": null
+        },
+        "uid": "071V_0_2",
+        "vehicle": null,
+        "transport_subtype": {
+          "title": null,
+          "code": null,
+          "color": null
+        },
+        "thread_method_link": "api.rasp.yandex.net/v3/thread/?date=2023-06-12&uid=071V_0_2"
+      },
+      "stops": "",
+      "from": {
+        "type": "station",
+        "title": "Москва (Восточный вокзал)",
+        "short_title": null,
+        "popular_title": "Восточный вокзал",
+        "code": "s9879173",
+        "station_type": "train_station",
+        "station_type_name": "вокзал",
+        "transport_type": "train"
+      },
+      "to": {
+        "type": "station",
+        "title": "Белгород",
+        "short_title": "",
+        "popular_title": "",
+        "code": "s9605027",
+        "station_type": "station",
+        "station_type_name": "станция",
+        "transport_type": "train"
+      },
+      "departure_platform": "",
+      "arrival_platform": "",
+      "departure_terminal": null,
+      "arrival_terminal": null,
+      "duration": 33600.0,
+      "has_transfers": false,
+      "tickets_info": {
+        "et_marker": false,
+        "places": []
+      },
+      "departure": "2023-06-12T20:30:00+03:00",
+      "arrival": "2023-06-13T05:50:00+03:00",
+      "start_date": "2023-06-12"
+    },
+    {
+      "thread": {
+        "number": "",
+        "title": "Москва — Белгород, автовокзал",
+        "short_title": "Москва — Белгород, автовокзал",
+        "express_type": null,
+        "transport_type": "bus",
+        "carrier": {
+          "code": 58365,
+          "title": "ИП Федотова Елена Петровна",
+          "codes": {
+            "sirena": null,
+            "iata": null,
+            "icao": null
+          },
+          "address": "",
+          "url": "",
+          "email": "",
+          "contacts": "",
+          "phone": "",
+          "logo": null,
+          "logo_svg": null
+        },
+        "uid": "empty_1_f9850911t9623276_114",
+        "vehicle": null,
+        "transport_subtype": {
+          "title": null,
+          "code": null,
+          "color": null
+        },
+        "thread_method_link": "api.rasp.yandex.net/v3/thread/?date=2023-06-12&uid=empty_1_f9850911t9623276_114"
+      },
+      "stops": "",
+      "from": {
+        "type": "station",
+        "title": "Автостанция Варшавская",
+        "short_title": null,
+        "popular_title": null,
+        "code": "s9850911",
+        "station_type": "",
+        "station_type_name": "автостанция",
+        "transport_type": "bus"
+      },
+      "to": {
+        "type": "station",
+        "title": "Белгород, автовокзал",
+        "short_title": "",
+        "popular_title": "Автовокзал Белгород",
+        "code": "s9623276",
+        "station_type": "bus_station",
+        "station_type_name": "автовокзал",
+        "transport_type": "bus"
+      },
+      "departure_platform": "",
+      "arrival_platform": "",
+      "departure_terminal": null,
+      "arrival_terminal": null,
+      "duration": 37800.0,
+      "has_transfers": false,
+      "tickets_info": {
+        "et_marker": false,
+        "places": [
+          {
+            "name": null,
+            "price": {
+              "whole": 1605,
+              "cents": 0
+            },
+            "currency": "RUB"
+          }
+        ]
+      },
+      "departure": "2023-06-12T21:00:00+03:00",
+      "arrival": "2023-06-13T07:30:00+03:00",
+      "start_date": "2023-06-12"
+    },
+    {
+      "thread": {
+        "number": "025Я",
+        "title": "Москва — Белгород",
+        "short_title": "Москва — Белгород",
+        "express_type": null,
+        "transport_type": "train",
+        "carrier": {
+          "code": 112,
+          "title": "РЖД/ФПК",
+          "codes": {
+            "sirena": null,
+            "iata": null,
+            "icao": null
+          },
+          "address": "Москва, ул. Новая Басманная , д. 2",
+          "url": "http://www.rzd.ru/",
+          "email": "info@rzd.ru",
+          "contacts": "Единая телефонная линия: +7 (800) 775-00-00 (звонок бесплатный из всех регионов РФ).",
+          "phone": "+7 (800) 775-00-00",
+          "logo": "https://yastat.net/s3/rasp/media/data/company/logo/logo.gif",
+          "logo_svg": null
+        },
+        "uid": "025YA_1_2",
+        "vehicle": null,
+        "transport_subtype": {
+          "title": null,
+          "code": null,
+          "color": null
+        },
+        "thread_method_link": "api.rasp.yandex.net/v3/thread/?date=2023-06-12&uid=025YA_1_2"
+      },
+      "stops": "",
+      "from": {
+        "type": "station",
+        "title": "Москва (Павелецкий вокзал)",
+        "short_title": "М-Павелецк.",
+        "popular_title": "Павелецкий вокзал",
+        "code": "s2000005",
+        "station_type": "train_station",
+        "station_type_name": "вокзал",
+        "transport_type": "train"
+      },
+      "to": {
+        "type": "station",
+        "title": "Белгород",
+        "short_title": "",
+        "popular_title": "",
+        "code": "s9605027",
+        "station_type": "station",
+        "station_type_name": "станция",
+        "transport_type": "train"
+      },
+      "departure_platform": "",
+      "arrival_platform": "",
+      "departure_terminal": null,
+      "arrival_terminal": null,
+      "duration": 59340.0,
+      "has_transfers": false,
+      "tickets_info": {
+        "et_marker": false,
+        "places": []
+      },
+      "departure": "2023-06-12T21:04:00+03:00",
+      "arrival": "2023-06-13T13:33:00+03:00",
+      "start_date": "2023-06-12"
+    },
+    {
+      "thread": {
+        "number": "",
+        "title": "Москва — Белгород, автокасса на ж/д вокзале",
+        "short_title": "Москва — Белгород, автокасса на ж/д вокзале",
+        "express_type": null,
+        "transport_type": "bus",
+        "carrier": {
+          "code": 60679,
+          "title": "ООО \"БПП-Рейс\"",
+          "codes": {
+            "sirena": null,
+            "iata": null,
+            "icao": null
+          },
+          "address": "308023, Белгородская область, г. Белгород, 5-й Заводской пер., 42",
+          "url": "",
+          "email": "",
+          "contacts": "",
+          "phone": "",
+          "logo": null,
+          "logo_svg": null
+        },
+        "uid": "empty_0_f9876347t9761879_114",
+        "vehicle": null,
+        "transport_subtype": {
+          "title": null,
+          "code": null,
+          "color": null
+        },
+        "thread_method_link": "api.rasp.yandex.net/v3/thread/?date=2023-06-12&uid=empty_0_f9876347t9761879_114"
+      },
+      "stops": "",
+      "from": {
+        "type": "station",
+        "title": "Автовокзал Саларьево",
+        "short_title": null,
+        "popular_title": null,
+        "code": "s9876347",
+        "station_type": "bus_station",
+        "station_type_name": "автовокзал",
+        "transport_type": "bus"
+      },
+      "to": {
+        "type": "station",
+        "title": "Белгород, автокасса на ж/д вокзале",
+        "short_title": null,
+        "popular_title": null,
+        "code": "s9761879",
+        "station_type": "",
+        "station_type_name": "автостанция",
+        "transport_type": "bus"
+      },
+      "departure_platform": "",
+      "arrival_platform": "",
+      "departure_terminal": null,
+      "arrival_terminal": null,
+      "duration": 34800.0,
+      "has_transfers": false,
+      "tickets_info": {
+        "et_marker": false,
+        "places": [
+          {
+            "name": null,
+            "price": {
+              "whole": 1605,
+              "cents": 0
+            },
+            "currency": "RUB"
+          }
+        ]
+      },
+      "departure": "2023-06-12T21:30:00+03:00",
+      "arrival": "2023-06-13T07:10:00+03:00",
+      "start_date": "2023-06-12"
+    },
+    {
+      "thread": {
+        "number": "",
+        "title": "Москва — Белгород, автовокзал",
+        "short_title": "Москва — Белгород, автовокзал",
+        "express_type": null,
+        "transport_type": "bus",
+        "carrier": {
+          "code": 58365,
+          "title": "ИП Федотова Елена Петровна",
+          "codes": {
+            "sirena": null,
+            "iata": null,
+            "icao": null
+          },
+          "address": "",
+          "url": "",
+          "email": "",
+          "contacts": "",
+          "phone": "",
+          "logo": null,
+          "logo_svg": null
+        },
+        "uid": "empty_0_f9878376t9623276_114",
+        "vehicle": null,
+        "transport_subtype": {
+          "title": null,
+          "code": null,
+          "color": null
+        },
+        "thread_method_link": "api.rasp.yandex.net/v3/thread/?date=2023-06-12&uid=empty_0_f9878376t9623276_114"
+      },
+      "stops": "",
+      "from": {
+        "type": "station",
+        "title": "Центральный автовокзал",
+        "short_title": null,
+        "popular_title": null,
+        "code": "s9878376",
+        "station_type": "bus_station",
+        "station_type_name": "автовокзал",
+        "transport_type": "bus"
+      },
+      "to": {
+        "type": "station",
+        "title": "Белгород, автовокзал",
+        "short_title": "",
+        "popular_title": "Автовокзал Белгород",
+        "code": "s9623276",
+        "station_type": "bus_station",
+        "station_type_name": "автовокзал",
+        "transport_type": "bus"
+      },
+      "departure_platform": "",
+      "arrival_platform": "",
+      "departure_terminal": null,
+      "arrival_terminal": null,
+      "duration": 39000.0,
+      "has_transfers": false,
+      "tickets_info": {
+        "et_marker": false,
+        "places": [
+          {
+            "name": null,
+            "price": {
+              "whole": 1605,
+              "cents": 0
+            },
+            "currency": "RUB"
+          }
+        ]
+      },
+      "departure": "2023-06-12T21:30:00+03:00",
+      "arrival": "2023-06-13T08:20:00+03:00",
+      "start_date": "2023-06-12"
+    },
+    {
+      "thread": {
+        "number": "",
+        "title": "Москва — Белгород, автовокзал",
+        "short_title": "Москва — Белгород, автовокзал",
+        "express_type": null,
+        "transport_type": "bus",
+        "carrier": {
+          "code": 58365,
+          "title": "ИП Федотова Елена Петровна",
+          "codes": {
+            "sirena": null,
+            "iata": null,
+            "icao": null
+          },
+          "address": "",
+          "url": "",
+          "email": "",
+          "contacts": "",
+          "phone": "",
+          "logo": null,
+          "logo_svg": null
+        },
+        "uid": "empty_1_f9746351t9623276_24",
+        "vehicle": "YUTONG ZK 6122 H9",
+        "transport_subtype": {
+          "title": null,
+          "code": null,
+          "color": null
+        },
+        "thread_method_link": "api.rasp.yandex.net/v3/thread/?date=2023-06-12&uid=empty_1_f9746351t9623276_24"
+      },
+      "stops": "",
+      "from": {
+        "type": "station",
+        "title": "Москва, автостанция Новоясеневская",
+        "short_title": null,
+        "popular_title": "Автостанция Новоясеневская",
+        "code": "s9746351",
+        "station_type": "",
+        "station_type_name": "автостанция",
+        "transport_type": "bus"
+      },
+      "to": {
+        "type": "station",
+        "title": "Белгород, автовокзал",
+        "short_title": "",
+        "popular_title": "Автовокзал Белгород",
+        "code": "s9623276",
+        "station_type": "bus_station",
+        "station_type_name": "автовокзал",
+        "transport_type": "bus"
+      },
+      "departure_platform": "",
+      "arrival_platform": "",
+      "departure_terminal": null,
+      "arrival_terminal": null,
+      "duration": 35100.0,
+      "has_transfers": false,
+      "tickets_info": {
+        "et_marker": false,
+        "places": [
+          {
+            "name": null,
+            "price": {
+              "whole": 1500,
+              "cents": 0
+            },
+            "currency": "RUB"
+          }
+        ]
+      },
+      "departure": "2023-06-12T22:00:00+03:00",
+      "arrival": "2023-06-13T07:45:00+03:00",
+      "start_date": "2023-06-12"
+    },
+    {
+      "thread": {
+        "number": "",
+        "title": "Москва — Шебекино",
+        "short_title": "Москва — Шебекино",
+        "express_type": null,
+        "transport_type": "bus",
+        "carrier": {
+          "code": 66120,
+          "title": "ИП Аведян Артем Аведисович",
+          "codes": {
+            "sirena": null,
+            "iata": null,
+            "icao": null
+          },
+          "address": "",
+          "url": "",
+          "email": "",
+          "contacts": "",
+          "phone": "",
+          "logo": null,
+          "logo_svg": null
+        },
+        "uid": "empty_1_f9876347t9807288_114",
+        "vehicle": null,
+        "transport_subtype": {
+          "title": null,
+          "code": null,
+          "color": null
+        },
+        "thread_method_link": "api.rasp.yandex.net/v3/thread/?date=2023-06-12&uid=empty_1_f9876347t9807288_114"
+      },
+      "stops": "",
+      "from": {
+        "type": "station",
+        "title": "Автовокзал Саларьево",
+        "short_title": null,
+        "popular_title": null,
+        "code": "s9876347",
+        "station_type": "bus_station",
+        "station_type_name": "автовокзал",
+        "transport_type": "bus"
+      },
+      "to": {
+        "type": "station",
+        "title": "Белгород, автовокзал",
+        "short_title": "",
+        "popular_title": "Автовокзал Белгород",
+        "code": "s9623276",
+        "station_type": "bus_station",
+        "station_type_name": "автовокзал",
+        "transport_type": "bus"
+      },
+      "departure_platform": "",
+      "arrival_platform": "",
+      "departure_terminal": null,
+      "arrival_terminal": null,
+      "duration": 37200.0,
+      "has_transfers": false,
+      "tickets_info": {
+        "et_marker": false,
+        "places": [
+          {
+            "name": null,
+            "price": {
+              "whole": 1605,
+              "cents": 0
+            },
+            "currency": "RUB"
+          }
+        ]
+      },
+      "departure": "2023-06-12T23:00:00+03:00",
+      "arrival": "2023-06-13T09:20:00+03:00",
+      "start_date": "2023-06-12"
+    }
+  ],
+  "interval_segments": [],
+  "pagination": {
+    "total": 13,
+    "limit": 100,
+    "offset": 0
+  }
+}
