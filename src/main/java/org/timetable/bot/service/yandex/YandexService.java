@@ -1,9 +1,9 @@
 package org.timetable.bot.service.yandex;
 
-import org.timetable.bot.model.Route;
+import java.text.ParseException;
 
 public interface YandexService {
 
-    Route requestYandex();
+    String requestYandex(String departure, String arrival, String date_arrival) throws ParseException;
 
 }

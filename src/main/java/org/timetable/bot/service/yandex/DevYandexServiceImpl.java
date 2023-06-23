@@ -16,15 +16,15 @@ public class DevYandexServiceImpl extends BaseYandexServiceImpl {
     }
 
     @Override
-    public Route requestYandex() {
+    public String requestYandex(String departure, String arrival, String date_arrival) {
         Route route = new Route();
         route.setArrival("Moscow");
         route.setDeparture("Smolensk");
-        route.setNumber(85);
+        route.setNumber("85");
         route.setCreate_request(new Date());
 
         saveRoute(route);
 
-        return route;
+        return route.toString();
     }
 }

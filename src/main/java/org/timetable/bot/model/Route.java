@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -24,7 +26,10 @@ public class Route {
     private String arrival;
 
     @Column(name = "NUMBER")
-    private int number;
+    private String number;
+
+    @Column(name = "DATE")
+    private Date date;
 
     @Column(name = "CREATE_REQUEST")
     private Date create_request;
@@ -34,10 +39,6 @@ public class Route {
 
     @Override
     public String toString() {
-        return "Route{" +
-                "departure='" + departure + '\'' +
-                ", arrival='" + arrival + '\'' +
-                ", number=" + number +
-                '}';
+        return "Маршрут №" + number + ". Город отправления: " + departure + ". Город прибытия: " + arrival + ". Дата отправления поезда: " + date + ".\n";
     }
 }

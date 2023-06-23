@@ -1,13 +1,9 @@
 package org.timetable.bot.bot;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -19,8 +15,15 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.timetable.bot.bot.command.CommandConst;
 import org.timetable.bot.bot.command.CommandRegistry;
 import org.timetable.bot.context.UserContext;
+import org.timetable.bot.service.GuideService;
 import org.timetable.bot.service.RouteService;
+import org.timetable.bot.service.yandex.YandexServiceImpl;
 
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j
@@ -29,11 +32,15 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     private final CommandRegistry commandRegistry;
     private final RouteService routeService;
+    private final YandexServiceImpl yandexService;
+    private final GuideService guideService;
 
     @Autowired
-    public TelegramBot(TelegramBotsApi telegramBotsApi, CommandRegistry commandRegistry, RouteService routeService) throws TelegramApiException {
+    public TelegramBot(TelegramBotsApi telegramBotsApi, CommandRegistry commandRegistry, RouteService routeService, YandexServiceImpl yandexService, GuideService guideService) throws TelegramApiException {
         this.commandRegistry = commandRegistry;
         this.routeService = routeService;
+        this.yandexService = yandexService;
+        this.guideService = guideService;
 
         telegramBotsApi.registerBot(this);
     }
@@ -74,28 +81,26 @@ public class TelegramBot extends TelegramLongPollingBot {
 
         } catch (TelegramApiException e) {
             log.error("Ошибка отправки ответа", e);
-        } catch (JsonProcessingException e) {
-            log.error("Ошибка при отправке запроса к API", e);
+        }  catch (ParseException e) {
+            throw new RuntimeException(e);
         }
     }
 
-    private void processPlainText(Message message, String command) throws TelegramApiException, JsonProcessingException {
+    private void processPlainText(Message message, String command) throws TelegramApiException, ParseException {
         String lastUserCommand = UserContext.getUserState(message.getChat().getUserName());
-        if (lastUserCommand.equals(CommandConst.FIND_BY_DEPARTURE_ARRIVAL)) {
-            boolean exists = routeService.checkExistsRoute(command.split(" ")[0], command.split(" ")[1]);
+        if (lastUserCommand.equals(CommandConst.FIND)) {
+            boolean exists = routeService.checkExistsRoute(command.split(" ")[0], command.split(" ")[1], command.split(" ")[2]);
             if (exists) {
-                sendIncorrectMessage(message, routeService.getRoutesByDepartureAndArrival(command.split(" ")[0], command.split(" ")[1]));
+                sendIncorrectMessage(message, routeService.getRoutesByDepartureAndArrivalAndDate(command.split(" ")[0], command.split(" ")[1], command.split(" ")[2]));
             } else {
-                RestTemplate restTemplate = new RestTemplate();
-                String url = "https://api.rasp.yandex.net/v3.0/search/?apikey=2263b4b1-d9e2-4441-8d89-45a44a67fe58&format=json&from=c213&to=c4&lang=ru_RU&page=1&date=2023-06-12";
-                ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
-                ObjectMapper mapper = new ObjectMapper();
-                JsonNode body = mapper.readTree(response.getBody());
-                String bodyS = body.asText();
-                sendIncorrectMessage(message, bodyS);
+                String city_departure = command.split(" ")[0];
+                String departure_code = guideService.getGuideByCity(city_departure).getCode();
+                String city_arrival = command.split(" ")[1];
+                String arrival_code = guideService.getGuideByCity(city_arrival).getCode();
+                String date = command.split(" ")[2];
+                String body = yandexService.requestYandex(departure_code, arrival_code, date);
+                sendIncorrectMessage(message, body);
             }
-        } else if (lastUserCommand.equals(CommandConst.FIND_BY_NUMBER)) {
-            sendIncorrectMessage(message, routeService.getRouteByNumber(Integer.parseInt(message.getText())).toString());
         }
     }
 
