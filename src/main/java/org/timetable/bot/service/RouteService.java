@@ -36,6 +36,13 @@ public class RouteService {
         return routes.toString();
     }
 
+    public List<Route> getRouteByDepartureAndArrivalAndDate(String departure, String arrival, String date) throws ParseException {
+        DateFormat date1 = new SimpleDateFormat("dd-MM-yyyy");
+        Date date2 = date1.parse(date);
+        List<Route> routeList = routeRepo.findByDepartureAndArrivalAndDate(departure, arrival, date2);
+        return routeList;
+    }
+
     public boolean checkExistsRoute(String departure, String arrival, String date) throws ParseException {
         DateFormat date1 = new SimpleDateFormat("dd-MM-yyyy");
         Date date2 = date1.parse(date);

@@ -15,15 +15,18 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.timetable.bot.bot.command.CommandConst;
 import org.timetable.bot.bot.command.CommandRegistry;
 import org.timetable.bot.context.UserContext;
+import org.timetable.bot.model.Guide;
+import org.timetable.bot.model.UserRequest;
 import org.timetable.bot.service.GuideService;
 import org.timetable.bot.service.RouteService;
+import org.timetable.bot.service.UserDataService;
 import org.timetable.bot.service.yandex.YandexServiceImpl;
 
-import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -34,13 +37,15 @@ public class TelegramBot extends TelegramLongPollingBot {
     private final RouteService routeService;
     private final YandexServiceImpl yandexService;
     private final GuideService guideService;
+    private final UserDataService userDataService;
 
     @Autowired
-    public TelegramBot(TelegramBotsApi telegramBotsApi, CommandRegistry commandRegistry, RouteService routeService, YandexServiceImpl yandexService, GuideService guideService) throws TelegramApiException {
+    public TelegramBot(TelegramBotsApi telegramBotsApi, CommandRegistry commandRegistry, RouteService routeService, YandexServiceImpl yandexService, GuideService guideService, UserDataService userDataService) throws TelegramApiException {
         this.commandRegistry = commandRegistry;
         this.routeService = routeService;
         this.yandexService = yandexService;
         this.guideService = guideService;
+        this.userDataService = userDataService;
 
         telegramBotsApi.registerBot(this);
     }
@@ -89,8 +94,12 @@ public class TelegramBot extends TelegramLongPollingBot {
     private void processPlainText(Message message, String command) throws TelegramApiException, ParseException {
         String lastUserCommand = UserContext.getUserState(message.getChat().getUserName());
         if (lastUserCommand.equals(CommandConst.FIND)) {
+            UserRequest userRequest = new UserRequest();
+            userRequest.setUser(userDataService.getUserByLogin(message.getChat().getUserName()));
+            userRequest.setRequest_date(new Date());
             boolean exists = routeService.checkExistsRoute(command.split(" ")[0], command.split(" ")[1], command.split(" ")[2]);
             if (exists) {
+                userRequest.setRoute(routeService.getRouteByDepartureAndArrivalAndDate(command.split(" ")[0], command.split(" ")[1], command.split(" ")[2]).get(0));
                 sendIncorrectMessage(message, routeService.getRoutesByDepartureAndArrivalAndDate(command.split(" ")[0], command.split(" ")[1], command.split(" ")[2]));
             } else {
                 String city_departure = command.split(" ")[0];
@@ -99,7 +108,21 @@ public class TelegramBot extends TelegramLongPollingBot {
                 String arrival_code = guideService.getGuideByCity(city_arrival).getCode();
                 String date = command.split(" ")[2];
                 String body = yandexService.requestYandex(departure_code, arrival_code, date);
+                userRequest.setRoute(routeService.getRouteByDepartureAndArrivalAndDate(command.split(" ")[0], command.split(" ")[1], command.split(" ")[2]).get(0));
                 sendIncorrectMessage(message, body);
+            }
+        }
+        if (lastUserCommand.equals(CommandConst.ADMIN)) {
+            boolean isAdmin = userDataService.checkAdminUser(message.getChat().getUserName());
+            if (isAdmin) {
+                String city = command.split(" ")[0];
+                String code = command.split(" ")[1];
+
+                Guide guide = new Guide(city, code);
+                guideService.create(guide);
+                sendIncorrectMessage(message, "Город добавлен.");
+            } else {
+                sendIncorrectMessage(message, "Вы не являетесь админом, доступ запрещён.");
             }
         }
     }

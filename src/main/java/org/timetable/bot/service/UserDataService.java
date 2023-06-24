@@ -29,4 +29,9 @@ public class UserDataService {
         UserData userData = userDataRepo.findByLogin(login);
         return userData != null;
     }
+
+    public boolean checkAdminUser(String login) {
+        UserData userData = userDataRepo.findByLogin(login);
+        return userData.isAdmin();
+    }
 }
